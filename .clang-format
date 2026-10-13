@@ -1,0 +1,7 @@
+# C++ style for every project in this repository (`make format` / `make lint`).
+# Pinned clang-format release line: 19 (Debian trixie in the container, PyPI wheels natively).
+BasedOnStyle: Google
+ColumnLimit: 100
+DerivePointerAlignment: false
+PointerAlignment: Left
+IncludeBlocks: Preserve

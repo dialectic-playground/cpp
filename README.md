@@ -16,7 +16,7 @@ This repository implements the eleven projects of the
 specified to the byte by the curriculum and verified by its black-box tests on Linux, macOS,
 and Windows.
 
-**Status:** repository and toolchain ready; no projects implemented yet.
+**Status:** Implemented projects: 00-hello-world
 
 ## C++ at a glance
 
@@ -36,8 +36,20 @@ and Windows.
 | Build / package tool | CMake |
 | Container image | `gcc:16-trixie`, pinned by digest ([`Containerfile`](Containerfile)) |
 | Native CI | G++ on Linux, Apple Clang on macOS, MinGW-w64 G++ on Windows, plus CMake |
+| Unit tests | CTest, one executable per unit with small assertion helpers (no third-party framework) |
+| Lint | `-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Werror` build + `clang-format --dry-run --Werror` |
+| Format | `clang-format` 19 ([`.clang-format`](.clang-format): Google style, 100 columns) |
 
 `make toolchain` verifies that the container and native toolchains are on this release line.
+
+clang-format is pinned to the 19 release line everywhere, because formatting output changes
+between releases: Debian trixie's `clang-format` in the container and the `clang-format==19.1.7`
+PyPI wheel natively (`python -m pip install clang-format==19.1.7` on Linux, macOS, and Windows;
+CI does this). Each project builds with CMake into `build/container` or `build/local`, so
+container and native builds never share a CMake cache. On Windows, run `make` from Git Bash
+with MinGW-w64 G++ and CMake on `PATH`; the projects use the "MinGW Makefiles" generator (never
+MSVC), link the C++ runtime statically, and take UTF-16 arguments through `wmain`
+(`-municode`).
 
 ## Layout
 
