@@ -35,7 +35,7 @@ and Windows.
 | Release line | C++20 (GCC 16 in the container) |
 | Build / package tool | CMake |
 | Container image | `gcc:16-trixie`, pinned by digest ([`Containerfile`](Containerfile)) |
-| Native CI | GCC/G++ (Linux), Apple Clang (macOS), MinGW-w64 (Windows), and CMake are preinstalled on the runners |
+| Native CI | G++ on Linux, Apple Clang on macOS, MinGW-w64 G++ on Windows, plus CMake |
 
 `make toolchain` verifies that the container and native toolchains are on this release line.
 
