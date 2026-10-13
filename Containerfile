@@ -1,13 +1,13 @@
-# Toolchain image for REPO-NAME (container-first; see tools/dp-run).
+# Toolchain image for dialectic-playground/cpp: C++ (container-first; see tools/dp-run).
 #
-# TEMPLATE: replace the base image with the official image for this repository's toolchain,
-# pinned by its multi-architecture index digest (FROM image:tag@sha256:...), and add only
-# what that image lacks. Keep `make` and the final ENV line. Dependabot (docker) keeps the
-# pin current.
-FROM docker.io/library/debian:trixie-slim@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f
+# C++20 (GCC 16 in the container); build and package tool: CMake.
+# Official base image pinned by multi-architecture index digest, plus make and python3 (for the
+# curriculum's black-box runner). Dependabot (docker) refreshes the digest; moving to a new
+# release line is a deliberate change (keep `make toolchain` and the native CI in step).
+FROM docker.io/library/gcc:16-trixie@sha256:17043c23ec2ad97fc3beca18da77275d26be5db5cd70ea0a5d73200e21a8e999
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends make git ca-certificates \
+    && apt-get install -y --no-install-recommends make cmake python3 \
     && rm -rf /var/lib/apt/lists/*
 
 ENV DP_IN_CONTAINER=1
