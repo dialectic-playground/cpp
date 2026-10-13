@@ -6,7 +6,8 @@
 # project listed in IMPLEMENTED in the root Makefile.
 # - Container (podman): `make check` in the toolchain image (./Containerfile), on Linux.
 # - Native (Linux, macOS, Windows): `make check roundtrip` with DP_RUNTIME=local;
-#   toolchain: G++ on Linux, Apple Clang on macOS, MinGW-w64 G++ on Windows, plus CMake.
+#   toolchain: G++ on Linux, Apple Clang on macOS, MinGW-w64 G++ on Windows, plus CMake and
+#   clang-format 19 (PyPI wheel, the container's release line).
 # - Shared tooling, DCO, and the required "CI result" check, as in every repository.
 #
 # Actions are pinned to full commit SHAs (organization policy); Dependabot keeps them current.
@@ -74,6 +75,11 @@ jobs:
 
       - name: Show preinstalled compilers
         run: echo "Preinstalled on the runners (G++ on Linux, Apple Clang on macOS, MinGW-w64 G++ on Windows, plus CMake)"
+
+      # clang-format from PyPI, pinned to the container's release line (Debian trixie: 19.1.7),
+      # so `make lint` judges formatting identically on every OS.
+      - name: Install clang-format (lint / format)
+        run: python -m pip install --disable-pip-version-check clang-format==19.1.7 && clang-format --version
 
       - name: make check roundtrip
         run: make check roundtrip

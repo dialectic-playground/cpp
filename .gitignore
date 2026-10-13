@@ -10,3 +10,10 @@ __pycache__/
 *.swp
 .DS_Store
 Thumbs.db
+
+# Repository-specific
+# CMake build trees (build/container and build/local in each project)
+build/
+# Editor tooling outputs
+compile_commands.json
+.cache/
