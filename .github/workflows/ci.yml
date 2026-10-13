@@ -67,6 +67,11 @@ jobs:
         if: runner.os == 'Windows'
         run: command -v make || choco install make --no-progress -y
 
+      # macOS ships GNU Make 3.81; BASE-MAKEFILE requires >= 3.82.
+      - name: Use current GNU Make (macOS)
+        if: runner.os == 'macOS'
+        run: brew install make && echo "$(brew --prefix make)/libexec/gnubin" >> "$GITHUB_PATH"
+
       - name: Show preinstalled compilers
         run: echo "Preinstalled on the runners (G++ on Linux, Apple Clang on macOS, MinGW-w64 G++ on Windows, plus CMake)"
 
