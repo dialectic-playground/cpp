@@ -41,3 +41,6 @@ updates:
         patterns: ["*"]
     commit-message:
       prefix: ci
+    # Hooks pinned to a project toolchain's version change together with that toolchain.
+    ignore:
+      - dependency-name: "https://github.com/pre-commit/mirrors-clang-format"

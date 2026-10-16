@@ -166,9 +166,10 @@ repos:
     rev: 0.38.2
     hooks:
       - id: check-dependabot
-  # The projects' formatter, at the version CI installs (clang-format 19.1.7, repository .clang-format)
+  # The projects' formatter, at the version CI installs (clang-format 19.1.7, repository .clang-format).
+  # Dependabot ignores this hook: change it together with the clang-format pin in ci.yml.
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v23.1.3
+    rev: v19.1.7
     hooks:
       - id: clang-format
         files: ^[0-9]{2}-[^/]+/.*\.(cpp|hpp)$
