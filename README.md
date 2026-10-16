@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
+- [cpp](#cpp)
+  - [C++ at a glance](#c-at-a-glance)
+  - [Toolchain](#toolchain)
+  - [Layout](#layout)
+  - [Development](#development)
+  - [Implementing a project](#implementing-a-project)
+  - [Contributing](#contributing)
+  - [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dialectic-playground/.github/main/assets/cpp/dist/logo-dark.svg">
@@ -11,7 +27,7 @@ C++ implementation of the Dialectic Playground SDLC curriculum.
 
 📖 **Documentation:** <https://dialectic-playground.github.io/docs/reference/languages/cpp/>
 
-This repository implements the eleven projects of the
+This repository implements the fifty-three projects of the
 [SDLC curriculum](https://github.com/dialectic-playground/sdlc-curriculum) in C++. Each project is
 specified to the byte by the curriculum and verified by its black-box tests on Linux, macOS,
 and Windows.
@@ -20,25 +36,25 @@ and Windows.
 
 ## C++ at a glance
 
-| Aspect | C++ |
-| :-- | :-- |
-| File extension | `.cpp` |
-| CLI classification | Included |
-| Image category | Native Toolchain |
-| Access to OS primitives | Absolute & Direct (POSIX system calls) |
-| Entry-point mechanism | Kernel drops argc and argv pointers directly into main() |
+| Aspect                  | C++                                                      |
+| :---------------------- | :------------------------------------------------------- |
+| File extension          | `.cpp`                                                   |
+| CLI classification      | Included                                                 |
+| Image category          | Native Toolchain                                         |
+| Access to OS primitives | Absolute & Direct (POSIX system calls)                   |
+| Entry-point mechanism   | Kernel drops argc and argv pointers directly into main() |
 
 ## Toolchain
 
-| | |
-| :-- | :-- |
-| Release line | C++20 (GCC 16 in the container) |
-| Build / package tool | CMake |
-| Container image | `gcc:16-trixie`, pinned by digest ([`Containerfile`](Containerfile)) |
-| Native CI | G++ on Linux, Apple Clang on macOS, MinGW-w64 G++ on Windows, plus CMake |
-| Unit tests | CTest, one executable per unit with small assertion helpers (no third-party framework) |
-| Lint | `-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Werror` build + `clang-format --dry-run --Werror` |
-| Format | `clang-format` 19 ([`.clang-format`](.clang-format): Google style, 100 columns) |
+|                      |                                                                                                    |
+| :------------------- | :------------------------------------------------------------------------------------------------- |
+| Release line         | C++20 (GCC 16 in the container)                                                                    |
+| Build / package tool | CMake                                                                                              |
+| Container image      | `gcc:16-trixie`, pinned by digest ([`Containerfile`](Containerfile))                               |
+| Native CI            | G++ on Linux, Apple Clang on macOS, MinGW-w64 G++ on Windows, plus CMake                           |
+| Unit tests           | CTest, one executable per unit with small assertion helpers (no third-party framework)             |
+| Lint                 | `-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Werror` build + `clang-format --dry-run --Werror` |
+| Format               | `clang-format` 19 ([`.clang-format`](.clang-format): Google style, 100 columns)                    |
 
 `make toolchain` verifies that the container and native toolchains are on this release line.
 
@@ -53,14 +69,14 @@ MSVC), link the C++ runtime statically, and take UTF-16 arguments through `wmain
 
 ## Layout
 
-| Path | Contents |
-| :--- | :--- |
-| `00-hello-world/` … `10-sys-monitor/` | One workspace per curriculum project: `Makefile` (with `DP_*` hooks), HLD, LLD, RTM, master test plan, and `src/` |
-| `sdlc-curriculum/` | The curriculum, as a git submodule pinned to a release tag |
-| `Makefile` | `make check` (repository, toolchain, implemented projects), `toolchain`, `projects`, `roundtrip` |
-| `Containerfile`, `.devcontainer/` | The toolchain image and the matching dev container |
-| `tools/dp-run`, `tools/container.mk` | Shared container tooling (copies of the canonical files in `dialectic-playground/.github`) |
-| `.github/workflows/ci.yml` | CI: container and native (Linux, macOS, Windows) `make` targets, shared-tooling check, DCO |
+| Path                                 | Contents                                                                                                          |
+| :----------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
+| `00-hello-world/` … `52-spacecraft/` | One workspace per curriculum project: `Makefile` (with `DP_*` hooks), HLD, LLD, RTM, master test plan, and `src/` |
+| `sdlc-curriculum/`                   | The curriculum, as a git submodule pinned to a release tag                                                        |
+| `Makefile`                           | `make check` (repository, toolchain, implemented projects), `toolchain`, `projects`, `roundtrip`                  |
+| `Containerfile`, `.devcontainer/`    | The toolchain image and the matching dev container                                                                |
+| `tools/dp-run`, `tools/container.mk` | Shared container tooling (copies of the canonical files in `dialectic-playground/.github`)                        |
+| `.github/workflows/ci.yml`           | CI: container and native (Linux, macOS, Windows) `make` targets, shared-tooling check, DCO                        |
 
 ## Development
 
