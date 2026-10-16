@@ -22,7 +22,7 @@ CLANG_FORMAT ?= clang-format
 BUILD_DIR    := build/$(if $(DP_IN_CONTAINER),container,local)
 # Windows: MinGW-w64 G++ with its own make, never MSVC (the default generator there).
 ifeq ($(OS),Windows_NT)
-  CMAKE_GENERATOR_ARGS := -G "MinGW Makefiles" -DCMAKE_CXX_COMPILER=g++
+CMAKE_GENERATOR_ARGS := -G "MinGW Makefiles" -DCMAKE_CXX_COMPILER=g++
 endif
 SOURCES := $(wildcard src/app/*.cpp src/lib/*.cpp src/include/dp_hello/*.hpp \
 	src/tests/*.cpp src/tests/*.hpp)
