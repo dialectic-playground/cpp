@@ -5,7 +5,7 @@
 # curriculum's black-box runner), and clang-format 19 (Debian trixie; `make lint` / `make format`).
 # Dependabot (docker) refreshes the digest; moving to a new release line is a deliberate change
 # (keep `make toolchain` and the native CI in step).
-FROM docker.io/library/gcc:16-trixie@sha256:17043c23ec2ad97fc3beca18da77275d26be5db5cd70ea0a5d73200e21a8e999
+FROM docker.io/library/gcc:16-trixie@sha256:07280eb2e744f1b7a2d8d4a3894c089ea07266c109758afc388a634bd098e4eb
 
 # Debian keeps only the current version of each package, so apt versions cannot be pinned
 # reproducibly; the base image is pinned by digest instead.
